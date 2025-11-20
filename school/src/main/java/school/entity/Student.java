@@ -1,11 +1,11 @@
 package school.entity;
 
+// Student class with getters and setters
+
 public class Student {
 	private int id;
 	private String name;
 	private int age;
-	
-	
 	
 	public Student(int id, String name, int age) {
 		this.id = id;

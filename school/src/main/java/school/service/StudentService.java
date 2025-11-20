@@ -1,19 +1,19 @@
 package school.service;
 
+// Service class
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import school.entity.Student;
 
 public class StudentService {
-//	 jdbc:postgresql://localhost:5432/school?user=postgres&password=123
 		 
-	static String url = "jdbc:postgresql://localhost:5432/school";
-	static String user = "postgres";
-	static String pswd = "123";
+//	static String url = "jdbc:postgresql://localhost:5432/school";
+//	static String user = "postgres";
+//	static String pswd = "123";
 
 	static Connection con;
 	
@@ -21,7 +21,7 @@ public class StudentService {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
-			con = DriverManager.getConnection(url, user, pswd);
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/school?user=postgres&password=123");
 			
 //			System.out.println("Driver class loaded & connection established");
 			
@@ -34,6 +34,9 @@ public class StudentService {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	// Method to perform INSERT operation on database
 	
 	public void create(Student student) {
 		
@@ -58,6 +61,8 @@ public class StudentService {
 		
 	}
 	
+	// Method to perform SELECT operation on database
+	
 	public void fetch(int id) {
 		
 		String sql = "select * from student where id = ?";
@@ -75,6 +80,8 @@ public class StudentService {
 		}
 		
 	}
+	
+	// Method to perform UPDATE operation on database
 	
 	public void update(Student student) {
 		
@@ -97,6 +104,8 @@ public class StudentService {
 		fetch(student.getId());
 		
 	}
+	
+	// Method to perform DELETE operation on database
 	
 	public void delete(int id) {
 		
