@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import school.entity.Student;
 
 public class StudentService {
@@ -123,5 +126,30 @@ public class StudentService {
 
 			e.printStackTrace();
 		}
+	}
+	
+	// Method to fetch all the data from the student table
+	
+	public List<Student> getAll(){
+		List<Student> list = new ArrayList<Student>();
+		String sql = "select * from student";
+		
+		try {
+			PreparedStatement pstm = con.prepareStatement(sql);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new Student(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+			}
+			
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		return list;
+		
 	}
 }
